@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 The Big Data Workflow | Empirical Applications with Big Data Tools</title>
+  <meta name="description" content="These are the 2022/23 slides for the course ‘’Empirical Applications with Big Data Tools’’ part of the Master in Economics: Empirical Applications and Policies." />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 The Big Data Workflow | Empirical Applications with Big Data Tools" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="These are the 2022/23 slides for the course ‘’Empirical Applications with Big Data Tools’’ part of the Master in Economics: Empirical Applications and Policies." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 The Big Data Workflow | Empirical Applications with Big Data Tools" />
+  
+  <meta name="twitter:description" content="These are the 2022/23 slides for the course ‘’Empirical Applications with Big Data Tools’’ part of the Master in Economics: Empirical Applications and Policies." />
+  
+
+<meta name="author" content="Ainhoa Vega Bayo" />
+
+
+<meta name="date" content="2023-01-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="case-studies-on-big-data.-what-makes-big-data-valuable.html"/>
+<link rel="next" href="hadoop-and-spark.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="what-is-big-data.html"><a href="what-is-big-data.html"><i class="fa fa-check"></i><b>1</b> What is Big Data?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="what-is-big-data.html"><a href="what-is-big-data.html#the-three-vs-of-big-data"><i class="fa fa-check"></i><b>1.1</b> The three V’s of Big Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#volume"><i class="fa fa-check"></i>Volume</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#velocity"><i class="fa fa-check"></i>Velocity</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#variety"><i class="fa fa-check"></i>Variety</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="what-is-big-data.html"><a href="what-is-big-data.html#other-vs-of-big-data"><i class="fa fa-check"></i><b>1.2</b> Other V’s of Big Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#veracity"><i class="fa fa-check"></i>Veracity</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#value"><i class="fa fa-check"></i>Value</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#and-even-more-vs-of-big-data"><i class="fa fa-check"></i>… and even more V’s of Big Data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="what-is-big-data.html"><a href="what-is-big-data.html#some-statistics-of-big-data"><i class="fa fa-check"></i><b>1.3</b> Some statistics of Big Data</a></li>
+<li class="chapter" data-level="1.4" data-path="what-is-big-data.html"><a href="what-is-big-data.html#types-of-big-data"><i class="fa fa-check"></i><b>1.4</b> Types of Big Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#unstructured-data"><i class="fa fa-check"></i>Unstructured data</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#semi-structured-data"><i class="fa fa-check"></i>Semi-structured data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="what-is-big-data.html"><a href="what-is-big-data.html#how-is-big-data-being-used"><i class="fa fa-check"></i><b>1.5</b> How is Big Data being used?</a></li>
+<li class="chapter" data-level="1.6" data-path="what-is-big-data.html"><a href="what-is-big-data.html#concerns"><i class="fa fa-check"></i><b>1.6</b> Concerns</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html"><i class="fa fa-check"></i><b>2</b> Case studies on Big Data. What makes Big Data valuable?</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#assignment-1-pick-a-case-study"><i class="fa fa-check"></i><b>2.1</b> ASSIGNMENT #1: PICK A CASE STUDY</a></li>
+<li class="chapter" data-level="2.2" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#an-example-netflix."><i class="fa fa-check"></i><b>2.2</b> An example: Netflix.</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#background"><i class="fa fa-check"></i><b>2.2.1</b> Background</a></li>
+<li class="chapter" data-level="2.2.2" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-problem-is-big-data-helping-to-solve"><i class="fa fa-check"></i><b>2.2.2</b> What problem is Big Data helping to solve?</a></li>
+<li class="chapter" data-level="2.2.3" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#how-is-netflix-using-big-data-in-practice"><i class="fa fa-check"></i><b>2.2.3</b> How is Netflix using Big Data in practice?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-were-the-results-of-implementing-big-data-analysis"><i class="fa fa-check"></i><b>2.2.4</b> What were the results of implementing Big Data analysis?</a></li>
+<li class="chapter" data-level="2.2.5" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-data-was-used"><i class="fa fa-check"></i><b>2.2.5</b> What data was used?</a></li>
+<li class="chapter" data-level="2.2.6" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-are-the-technical-details"><i class="fa fa-check"></i><b>2.2.6</b> What are the technical details?</a></li>
+<li class="chapter" data-level="2.2.7" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-are-the-challenges-they-had-to-overcome"><i class="fa fa-check"></i><b>2.2.7</b> What are the challenges they had to overcome?</a></li>
+<li class="chapter" data-level="2.2.8" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#key-takeaways-and-insights"><i class="fa fa-check"></i><b>2.2.8</b> Key takeaways and insights?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#other-case-studies."><i class="fa fa-check"></i><b>2.3</b> Other case studies.</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html"><i class="fa fa-check"></i><b>3</b> The Big Data Workflow</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#acquiring-data"><i class="fa fa-check"></i><b>3.1</b> Acquiring data</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#an-example-of-data-acquisition-the-wifire-project"><i class="fa fa-check"></i>An example of data acquisition: the WIFIRE project</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#preparing-data"><i class="fa fa-check"></i><b>3.2</b> Preparing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#exploring-data"><i class="fa fa-check"></i>Exploring data</a></li>
+<li class="chapter" data-level="" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#pre-processing-data"><i class="fa fa-check"></i>Pre-processing data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#analyzing-data"><i class="fa fa-check"></i><b>3.3</b> Analyzing data</a></li>
+<li class="chapter" data-level="3.4" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#communicating-results"><i class="fa fa-check"></i><b>3.4</b> Communicating results</a></li>
+<li class="chapter" data-level="3.5" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#turning-insights-into-action"><i class="fa fa-check"></i><b>3.5</b> Turning insights into action</a></li>
+<li class="chapter" data-level="3.6" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#what-next"><i class="fa fa-check"></i><b>3.6</b> What next?</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html"><i class="fa fa-check"></i><b>4</b> Hadoop and Spark</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#what-is-hadoop"><i class="fa fa-check"></i><b>4.1</b> What is Hadoop?</a>
+<ul>
+<li class="chapter" data-level="" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#hadoop-features"><i class="fa fa-check"></i>Hadoop features</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#what-is-spark"><i class="fa fa-check"></i><b>4.2</b> What is Spark?</a>
+<ul>
+<li class="chapter" data-level="" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#spark-features"><i class="fa fa-check"></i>Spark features</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#what-are-the-key-differences-between-hadoop-and-spark"><i class="fa fa-check"></i><b>4.3</b> What are the key differences between Hadoop and Spark?</a></li>
+<li class="chapter" data-level="4.4" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#advantages-and-disadvantages"><i class="fa fa-check"></i><b>4.4</b> Advantages and disadvantages</a></li>
+<li class="chapter" data-level="4.5" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#intro-to-spark-with-sparklyr-in-r"><i class="fa fa-check"></i><b>4.5</b> Intro to spark with sparklyr in R</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><i class="fa fa-check"></i><b>5</b> Machine Learning for Social Scientists. Intro to the ML Framework.</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#prediction-vs-inference"><i class="fa fa-check"></i><b>5.1</b> Prediction vs inference</a></li>
+<li class="chapter" data-level="5.2" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#split-your-data-into-trainingtesting"><i class="fa fa-check"></i><b>5.2</b> Split your data into training/testing</a></li>
+<li class="chapter" data-level="5.3" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#cross-validation"><i class="fa fa-check"></i><b>5.3</b> Cross-validation</a></li>
+<li class="chapter" data-level="5.4" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#bias-variance-tradeoff"><i class="fa fa-check"></i><b>5.4</b> Bias-variance tradeoff</a></li>
+<li class="chapter" data-level="5.5" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#an-example"><i class="fa fa-check"></i><b>5.5</b> An example</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Empirical Applications with Big Data Tools</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="the-big-data-workflow" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> The Big Data Workflow<a href="the-big-data-workflow.html#the-big-data-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>To address the challenges of big data, innovative technologies are needed. Parallel, distributed computing paradigms, scalable machine learning algorithms, and real-time querying are key to analysis of big data. Distributed file systems, computing clusters, cloud computing, and data stores supporting data variety and agility are also necessary to provide the infrastructure for processing of big data. Workflows provide an intuitive, reusable, scalable and reproducible way to process big data to gain verifiable value from it in and enable application of same methods to different datasets.</p>
+<p>Now that we’ve defined what Big Data is and how businesses and institutions can strategize around big data to begin building a purpose, let’s return to using data science to extract value from big data around the purpose or questions they defined. We can define data science as a multi-disciplinary craft that combines <strong>People</strong> teaming up around an application-specific <strong>Purpose</strong> that can be achieved through a <strong>Process</strong>, Big Data computing <strong>Platforms</strong>, and <strong>Programmability</strong>.</p>
+<p>More specifically, when we think about the <strong>PROCESS</strong>, we can think about five different steps:</p>
+<p><img src="bd-workflow.jpeg" />
+These are five distinct activities that depend on each other. Let’s summarize each activity further before we go into the details of each.</p>
+<p><strong>Acquire</strong> includes anything that makes us retrieve data including; finding, accessing, acquiring, and moving data. It includes identification of and authenticated access to all related data. And transportation of data from sources to distributed files systems.
+It includes way to subset and match the data to regions or times of interest. As we sometimes refer to it as geo-spacial query.</p>
+<p>The next activity is <strong>Prepare</strong> data. We divide the ‘’prepare data’’ activity into two steps based on the nature of the activity. Namely, explore data and pre-process data. The first step in data preparation involves literally looking at the data to understand its nature, what it means, its quality and format. It often takes a preliminary analysis of data, or at least a sample of the data, to understand it.</p>
+<p>Once we know more about the data through exploratory analysis, the next step is the pre-processing of data for analysis. Pre-processing includes cleaning data, sub-setting or filtering data and creating data which programs can read and understand, such as modeling raw data into a more defined data model, or packaging it using a specific data format. If there are multiple data sets involved, this step also includes merging of multiple data sources, or streams.</p>
+<p>The prepared data would then be passed onto the <strong>Analyze</strong> step, which involves selection of analytical techniques to use, building a model of the data, and analyzing results. This step can take a couple of iterations on its own or might require data scientists to go back to steps one and two to get more data or package data in a different way.</p>
+<p>Step four includes the evaluation of analytical results, presenting them in a visual way, creating <strong>Reports</strong> that include an assessment of results with respect to success criteria. Activities in this step can often be referred to with terms like <em>interpret</em>, <em>summarize</em>, <em>visualize</em>, or <em>post process</em>.</p>
+<p>The last step brings us back to the very first reason we do data science, the purpose (to obtain value out of data!). Reporting insights from analysis and determining actions from insights based on the purpose you initially defined is what we refer to as the <strong>Act</strong> step.</p>
+<blockquote>
+<p>Note that this is an iterative process and findings from one step may require the previous step to be repeated with new information. Also, it’s very typical of job postings to be specialized in a single one (or maybe two) of these steps – you don’t have to be an expert in all of them!</p>
+</blockquote>
+<p>Let’s dive into each one of them a little bit further.</p>
+<div id="acquiring-data" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Acquiring data<a href="the-big-data-workflow.html#acquiring-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Step one in the (Big) Data Science process is <strong>data acquisition</strong>. The first step in acquiring data is to determine what data is available. Leave no stone unturned when it comes to finding the right data sources. You want to identify the right data related to your problem and make use of all the data that is relevant to your problem for your analysis.</p>
+<p>Leaving out even a small amount of important data can lead to incorrect conclusions. Data comes from many places, local and remote, in many varieties, structured and unstructured.</p>
+<p>There are many techniques and technologies for accessing these different types of data. For example, there is a large amount of data in conventional relational databases, similar to the big data structure of organizations. The preferred tool for accessing data in databases is Structured Query Language or SQL, which is supported by all relational database management systems. In addition, most database systems come with a graphical application environment that allows you to query and explore the data sets in the database.</p>
+<p>Data can also exist in files such as text files and Excel spreadsheets.
+Scripting languages are generally used to obtain data from files. A scripting language is a high-level programming language that can be general purpose or specialized for specific functions. Common scripting languages with support for processing files are Java Script, Python, PHP, Perl, R and MATLAB, and many others.</p>
+<p>An increasingly popular way to obtain data is from web sites. Web pages are written using a set of standards approved by a worldwide web consortium (W3C). This includes a variety of formats and services. One common format is Extensible Markup Language, or XML, which uses markup symbols or tabs to describe the content of a web page. Many websites also host web services that produce program access to their data (e.g. <a href="https://docs.oracle.com/javaee/6/tutorial/doc/gijqy.html">REST</a>).</p>
+<p><a href="https://www.mongodb.com/es/nosql-explained">NoSQL</a> storage systems are increasingly being used to manage a variety of data types in big data. These data warehouses are databases that do not represent data in a table format with columns and rows as with conventional relational databases. Examples of these data warehouses include <a href="https://cassandra.apache.org/_/index.html">Cassandra</a>, <a href="https://www.mongodb.com">MongoDB</a> and <a href="https://hbase.apache.org">HBASE</a> (check out a comparison among the three <a href="https://logz.io/blog/nosql-database-comparison/">here</a>). NoSQL data stores provide APIs to allow users to access data. These APIs can be used directly or in an application that needs to access the data. Additionally, most NoSQL systems provide data access via a web service interface, such a REST.</p>
+<div id="an-example-of-data-acquisition-the-wifire-project" class="section level3 unnumbered hasAnchor">
+<h3>An example of data acquisition: the WIFIRE project<a href="the-big-data-workflow.html#an-example-of-data-acquisition-the-wifire-project" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <a href="https://wifire.ucsd.edu">WIFIRE project</a> acquires data from a variety of sources:</p>
+<ol style="list-style-type: decimal">
+<li><p>They store <strong>sensor data</strong> from weather stations in a relational database, and use <strong>SQL</strong> to retrieve this data from the database. This allows them to create models to identify weather patterns associated with potentially dangerous wind conditions.</p></li>
+<li><p>To determine whether a particular weather station is currently experiencing potentially dangerous wind conditions (known as <a href="https://www.farmersalmanac.com/what-are-the-santa-ana-winds-90667">Santa Ana conditions</a>), they access <strong>real time data using a web socket service</strong>.</p></li>
+<li><p>At the same time, <strong>Tweets</strong> are retrieved using hashtags related to any fire that is occurring in the region. The Tweet messages are retrieved using the Twitter REST service. The idea is to determine the sentiment of these tweets using Natural Language Processing to see if people are expressing fear, anger, etc. about the nearby fire.</p></li>
+</ol>
+<p>The combination of sensor data and tweet sentiments helps to give a sense of the urgency of the fire situation.</p>
+</div>
+</div>
+<div id="preparing-data" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Preparing data<a href="the-big-data-workflow.html#preparing-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This includes <strong>exploring</strong> and <strong>pre-processing</strong> data.</p>
+<div id="exploring-data" class="section level3 unnumbered hasAnchor">
+<h3>Exploring data<a href="the-big-data-workflow.html#exploring-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>After gathering the data required for your application, you may be tempted to immediately create models to analyze the data right away. <strong>Avoid this temptation</strong>.</p>
+<blockquote>
+<p>The first step after receiving your data is to investigate it.</p>
+</blockquote>
+<p>Data exploration is one of two steps in the data preparation process. <strong>To gain a better understanding of the specific characteristics of your data, you should conduct preliminary research</strong>. This step will involve searching for correlations, general trends, and outliers. Without this step, you will be unable to effectively use the data.</p>
+<ul>
+<li><p><strong>Correlation plots</strong> can be used to investigate the relationships between different variables in data.</p></li>
+<li><p>Plotting the <strong>general trends</strong> of the variables (e.g. time-trends) will show you whether there is a consistent direction in which the values of these variables are moving, such as sales prices increasing or decreasing over time.</p></li>
+<li><p>Plotting <strong>outliers</strong> will assist you in double-checking for measurement errors in the data. Outliers that are not errors may cause you to discover a rare event in some cases.</p></li>
+<li><p><strong>Summary statistics</strong> also provide numerical values to describe the data. Mean, median, range, and standard deviation are some basic summary statistics you should compute for your data set. These metrics will give you an idea of the nature of your data, or they can tell you if there is an issue with your data. For example, if the data’s age range includes negative numbers or a number much greater than 100, there is something suspicious in the data that should be investigated.</p></li>
+<li><p>In this preliminary analysis step, <strong>visualization techniques</strong> also provide a quick, efficient, and generally very useful way to look at the data:</p>
+<ul>
+<li>A heat map can quickly show you where the hot spots are.</li>
+<li>Histograms depict the data distribution and can reveal unusual skewness or scatter.</li>
+<li>Boxplots are another type of plot used to depict data distribution.</li>
+<li>Line plots can show how data values change over time. Data spikes are also easy to spot.</li>
+<li>Scatter plots can demonstrate the relationship between two variables.</li>
+<li>…</li>
+</ul></li>
+</ul>
+<blockquote>
+<p><strong><em>What you gain by exploring your data is a better understanding of the complexity of the data you have to work with. This, in turn, will guide the rest of your process.</em></strong></p>
+</blockquote>
+</div>
+<div id="pre-processing-data" class="section level3 unnumbered hasAnchor">
+<h3>Pre-processing data<a href="the-big-data-workflow.html#pre-processing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>The raw data you obtain directly from your sources is never in the format required for analysis.</strong></p>
+<p>The data preprocessing step has two primary goals:</p>
+<p>The first step is to <strong>CLEAN the data</strong> in order to address data quality issues, and the second step is to <strong>TRANSFORM the raw data so that it can be analyzed</strong>.</p>
+<div id="cleaning-the-data" class="section level4 unnumbered hasAnchor">
+<h4>Cleaning the data<a href="the-big-data-workflow.html#cleaning-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Addressing quality issues in your data is a critical part of data preparation. Real-world data is disorganized. There are numerous examples of quality issues with real-world application data, such as:</p>
+<ul>
+<li><strong>Inconsistent data</strong>, e.g. a customer with two addresses;</li>
+<li><strong>Missing values</strong>, e.g. missing information on some of the key variables/demographics;</li>
+<li><strong>Duplicate values</strong>, e.g. in customer records, a customer’s address are recorded in two different locations and the two recordings contradict each other…;</li>
+<li><strong>Invalid data</strong>, such as a six-digit zip code (<em>although this should be avoided with proper processes</em>);</li>
+<li><strong>Outliers</strong>, though we have to differentiate between a rare event (a true outlier, properly recorded) and simply a typo/misrecording.</li>
+</ul>
+<p>Depending on the project, we’ll probably have little control over how the data is collected because we get it downstream. Avoiding data quality issues as they arise is not always an option. So now that we have the data, we must address quality issues by detecting and correcting them. Here are some approaches to addressing these quality issues:</p>
+<ul>
+<li>We can get rid of data records that have missing values <em>(though this might result in …?)</em></li>
+<li>Duplicate records can be combined. This will require a method for determining how to reconcile competing values. Depending on the project, it may make sense to keep the newer value (e.g. financial aid cases).</li>
+<li>In the case of invalid values, the best estimate for a reasonable value can be used. For example, if an employee’s age is missing, a reasonable value can be estimated based on the employee’s length of employment. <em>Again, this is typically an arbitrary decision and any steps taken here must be properly documented and argued</em>.</li>
+<li>Outliers can also be removed if they are irrelevant to the task.</li>
+</ul>
+<blockquote>
+<p>In general, to effectively address data quality issues, it is necessary to have knowledge of the application, such as how the data were collected, the user population, and the intended uses of the application. This domain knowledge is required to make informed decisions about how to deal with incomplete or incorrect data.</p>
+</blockquote>
+</div>
+<div id="transforming-the-data" class="section level4 unnumbered hasAnchor">
+<h4>Transforming the data<a href="the-big-data-workflow.html#transforming-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The second stage of data preparation involves <strong>transforming the cleaned data</strong> into the format required for analysis. This step can take on several different names (Data manipulation, data pre-processing, data wrangling, and even data munging). In this part of the process, the data engineer takes on several different types of operations, such as:
+* Scaling,
+* Transformation,
+* Feature (variable) selection,
+* Dimensionality reduction,
+* Data manipulation.</p>
+<ul>
+<li><p><strong>Scaling</strong> is the process of changing the range of values to be between a given range. For example, from zero to one. This is done to prevent certain characteristics with high values from dominating the results. For instance, in the analysis of data containing height and weight. The magnitude of the weight values is significantly greater than the magnitude of the height values. Scaling all values between zero and one equalizes the contributions of height and weight characteristics. This is typically done by standardization, i.e. <a href="https://scikit-learn.org/stable/auto_examples/preprocessing/plot_scaling_importance.html">calculating the z-score</a> (subtracting the mean value and dividing it by its standard deviation).</p></li>
+<li><p>Several data <strong>transformations</strong> can be applied to reduce noise and variability. Aggregation is one such transformation. Aggregated data generally produces less variable data, which can aid in analysis. Daily sales figures, for example, can fluctuate dramatically. Adding values to weekly or monthly sales figures yields comparable results. <em>Other filtering techniques can also be used to remove data variability. This, of course, comes at the expense of less detailed data.</em> As a result, these factors must be considered for the specific application.</p></li>
+<li><p><strong>Feature (variable) selection</strong> may include the removal of redundant or irrelevant entities, the combination of entities, and the creation of new entities. You may have discovered that two entities are related during the data exploration step. In that case, one of these features (variable) can be removed without affecting the analysis’s results. The purchase price of a product, for example, is likely to be correlated with the amount of sales tax paid. It will then be advantageous to eliminate the amount of sales tax. Eliminating redundant or irrelevant functions simplifies further analysis. In other cases, you may want to combine or create new features. It would make sense, for example, to include the applicant’s educational level as a feature in a loan approval request. There are also algorithms that can automatically determine the most important characteristics based on mathematical properties.</p></li>
+<li><p>When a data set has a large number of dimensions, <strong>dimensionality reduction</strong> is useful. It entails identifying a smaller subset of dimensions that capture the majority of the variation in the data. This reduces the data dimensions while removing irrelevant entities and simplifying the analysis. Principal Component Analysis (PCA), is a popular dimensional reduction technique.</p></li>
+<li><p>Raw data frequently needs to be <strong>manipulated</strong> in order for it to be in the proper format for analysis. For example, we may want to capture price changes for a specific market segment, such as real estate or health care, from samples that record daily changes in stock prices. This would necessitate determining which stocks fall into which market segment. Grouping them and possibly calculating the mean, range, and standard deviation for each group.</p></li>
+</ul>
+<blockquote>
+<p>Data preparation is a very important part of the data science process. In fact, <strong>this is where you will spend most of your time in any data science effort</strong>. It can be a tedious process, but it is a crucial step. Always remember, garbage in, garbage out. If you don’t spend the time and effort to create good data for analysis, you won’t get good results no matter how sophisticated the analysis technique you are using.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="analyzing-data" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Analyzing data<a href="the-big-data-workflow.html#analyzing-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>After you have thoroughly prepared your data, the next step is to <strong>analyze</strong> it. <strong>Data analysis entails creating a model from your data</strong>, which is referred to as input data. The analysis technique constructs a model from the input data. The output data is what your model generates (e.g. the prediction).</p>
+<p><img src="bd-workflow-analysis.jpeg" /></p>
+<p>There are various types of problems, and thus various types of analysis techniques. We’ll be focusing on the main ones, which are regularization, classification (tree-based methods), and unsupervised methods such as clustering.</p>
+<p>The most typical one is when your model must predict a numerical value instead of a category; this task is a regression problem. Predicting the price of a stock is an example of regression. The stock price is a numerical value, not something requiring a classification. Estimating the weekly sales of a new product or predicting a test score are two other examples of problems that can be solved with regression analysis. We will learn specific ML regression-techniques.</p>
+<p>On the other hand, the goal of classification is to predict the category of the input data. In this case, predicting the weather as sunny, rainy, windy, or cloudy is an example of this. Another example is determining whether a tumor is benign or malignant. Because there are only two categories, this classification is known as a binary classification. Another classic example is recognizing handwritten digits as belonging to one of ten categories ranging from zero to nine.</p>
+<p>Lastly, the goal of clustering is to organize similar items into groups. However, the main distinction with the classification problem is that we do not know beforehand what those groups are or what the ``true’’ classification is. As seen here, one example is segmenting a company’s customer base into distinct segments for more effective targeted marketing.</p>
+<p>Modeling begins with selecting, depending on the type of problem, one of the techniques listed. The model is then built using the data you’ve prepared. Lastly, you apply the model to new data samples to <strong>validate</strong> it. <strong>Cross-validation</strong> tells you how well the model performs on the data that was used to build it. We’ll delve deeper into this when starting the ML section of the course (specifically the ML framework). However, just as an overview, ot is common practice to divide the prepared data into a set of data for constructing the model (<em>training</em>) and a set of data for evaluating the model after it has been built (<em>testing</em>). You can also use new data prepared in the same manner as the data used to build the model.</p>
+<p>The model’s evaluation (<em>validation</em>) is dependent on the analysis techniques used. For example, for each sample (data point) in your input data for classification and regression, you will have the ``true’’ correct output. Therefore, the model can be validated by comparing the correct output to the output predicted by the model.</p>
+<p>On the other hand, the groups formed as a result of clustering should be examined to see if they make sense for your application. For example, do the customer segments accurately represent your customer base? Are they beneficial in your targeted marketing campaigns?</p>
+<p>You will be able to determine the next steps after you have evaluated (validated) your model to get a sense of its performance on your data. Some questions to consider include whether the analysis should be performed with more data in order to improve model performance. Would using different data types be beneficial? Is it difficult, for example, to distinguish customers from different regions in your clustering results? Is it possible to generate finer-grained customer segments by including zip code in your input data? Do the analysis results point to a more in-depth examination of some aspect of the problem? Predicting sunny weather, for example, yields excellent results, but rainy weather forecasting yields only average results. This means you should look more closely at your examples for rainy weather. Perhaps you simply require more rainy weather data points, or perhaps there are some anomalies in those data points Perhaps there is some missing data that must be included in order to fully capture rainy weather.</p>
+<blockquote>
+<p>The ideal situation would be for your model to perform exceptionally well in terms of the success criteria established when you defined the problem at the start of the project. In that case, you’re ready to move on to communicating and acting on the findings of your analysis.</p>
+</blockquote>
+<blockquote>
+<p>Data analysis entails selecting the best technique for your problem, developing the model using cross-validation techniques, and analyzing the results.</p>
+</blockquote>
+</div>
+<div id="communicating-results" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Communicating results<a href="the-big-data-workflow.html#communicating-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The fourth step in our data science process is to <strong>report the findings of our research</strong>. This is a critical step in communicating your findings and making a case for subsequent actions. It can take on different forms depending on your audience and should not be taken lightly. So, where to begin?</p>
+<p>The first step is to review the results of your analysis and decide what to present or report as the greatest value. These are the questions you should ask yourself when deciding what to present.</p>
+<blockquote>
+<p>What exactly is the punchline?</p>
+</blockquote>
+<p>What are the primary outcomes? What added value do these results provide, and what contribution can the model make to the application? How do the results stack up against the success criteria established at the start of the project? The answers to these questions should be included in your report or presentation, so make them the main themes and collect facts to support them.</p>
+<p><strong>Keep in mind that not all of your outcomes will be positive</strong>. Your analysis may yield results that contradict your hypothesis, or it may yield inconclusive or perplexing results. <em>You must also show these results</em>. Some of these findings may be perplexing to domain experts, and inconclusive findings may necessitate further investigation.</p>
+<blockquote>
+<p>Remember that the purpose of reporting your findings is to determine the next step.</p>
+</blockquote>
+<p>All findings must be presented in order for informed decisions to be made. Visualization is an important tool for communicating your findings. Scatter plots, line graphs, heat maps, and other graphs are effective ways to visually present your results. However, this time, instead of plotting the input data, you plot the output data using similar tools.</p>
+<p>You should also consider having backup tables with details of your analysis in case someone wants to dig deeper into the results.</p>
+<blockquote>
+<p>You want to <strong>report your findings</strong> by presenting your results and main added value using interactive visualization tools.</p>
+</blockquote>
+</div>
+<div id="turning-insights-into-action" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Turning insights into action<a href="the-big-data-workflow.html#turning-insights-into-action" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that we’ve evaluated the results of your analysis and generated reports on their potential value, the next step is to <strong>decide what action or actions to take based on the insights gained</strong>.</p>
+<p>Remember why we started collecting and analyzing data in the first place: <strong>to find actionable information within all of these data sets in order to answer questions or improve business processes</strong>.</p>
+<p>Is there something in your process, for example, that you should change to eliminate bottlenecks? Is there any information that should be added to your application to improve its accuracy? Should you divide your population into more defined groups for better targeted marketing? This is the first step toward putting ideas into action.</p>
+<p>Now that you’ve decided what action to take, the next step is to figure out how to carry it out. What is required to incorporate this action into your process or application? What steps should be taken to automate it? Stakeholders must be identified and included in the change process. We must monitor and measure the impact of the action on the process or application, just as we would with any other process improvement change.</p>
+<p>An evaluation results from assessing the impact. The next steps will be determined by evaluating the outcomes of the implemented action. Is there anything else that needs to be done to get even better results? What information must be reviewed? Is there anything else that needs to be looked into? Let us not forget, for example, what big data enables us to do. Real-time actions based on high-speed data streaming. We must define which aspects of our business require real-time action in order to influence operations or customer interactions. Once we’ve defined these real-time actions, we must ensure that there are automated systems or processes in place to carry them out, as well as failover in the event of a problem.</p>
+<blockquote>
+<p>Big data and data science are only useful if the insights can be translated into actions that are carefully defined and evaluated.</p>
+</blockquote>
+</div>
+<div id="what-next" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> What next?<a href="the-big-data-workflow.html#what-next" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>We’ll be focusing on different steps of the data science process.</strong></li>
+<li><strong>Remember, in the end, you’ll probably specialize in one or the other!</strong></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="case-studies-on-big-data.-what-makes-big-data-valuable.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hadoop-and-spark.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-big-data-workflow.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

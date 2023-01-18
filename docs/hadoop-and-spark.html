@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Hadoop and Spark | Empirical Applications with Big Data Tools</title>
+  <meta name="description" content="These are the 2022/23 slides for the course ‘’Empirical Applications with Big Data Tools’’ part of the Master in Economics: Empirical Applications and Policies." />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Hadoop and Spark | Empirical Applications with Big Data Tools" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="These are the 2022/23 slides for the course ‘’Empirical Applications with Big Data Tools’’ part of the Master in Economics: Empirical Applications and Policies." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Hadoop and Spark | Empirical Applications with Big Data Tools" />
+  
+  <meta name="twitter:description" content="These are the 2022/23 slides for the course ‘’Empirical Applications with Big Data Tools’’ part of the Master in Economics: Empirical Applications and Policies." />
+  
+
+<meta name="author" content="Ainhoa Vega Bayo" />
+
+
+<meta name="date" content="2023-01-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="the-big-data-workflow.html"/>
+<link rel="next" href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="what-is-big-data.html"><a href="what-is-big-data.html"><i class="fa fa-check"></i><b>1</b> What is Big Data?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="what-is-big-data.html"><a href="what-is-big-data.html#the-three-vs-of-big-data"><i class="fa fa-check"></i><b>1.1</b> The three V’s of Big Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#volume"><i class="fa fa-check"></i>Volume</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#velocity"><i class="fa fa-check"></i>Velocity</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#variety"><i class="fa fa-check"></i>Variety</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="what-is-big-data.html"><a href="what-is-big-data.html#other-vs-of-big-data"><i class="fa fa-check"></i><b>1.2</b> Other V’s of Big Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#veracity"><i class="fa fa-check"></i>Veracity</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#value"><i class="fa fa-check"></i>Value</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#and-even-more-vs-of-big-data"><i class="fa fa-check"></i>… and even more V’s of Big Data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="what-is-big-data.html"><a href="what-is-big-data.html#some-statistics-of-big-data"><i class="fa fa-check"></i><b>1.3</b> Some statistics of Big Data</a></li>
+<li class="chapter" data-level="1.4" data-path="what-is-big-data.html"><a href="what-is-big-data.html#types-of-big-data"><i class="fa fa-check"></i><b>1.4</b> Types of Big Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#unstructured-data"><i class="fa fa-check"></i>Unstructured data</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#semi-structured-data"><i class="fa fa-check"></i>Semi-structured data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="what-is-big-data.html"><a href="what-is-big-data.html#how-is-big-data-being-used"><i class="fa fa-check"></i><b>1.5</b> How is Big Data being used?</a></li>
+<li class="chapter" data-level="1.6" data-path="what-is-big-data.html"><a href="what-is-big-data.html#concerns"><i class="fa fa-check"></i><b>1.6</b> Concerns</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html"><i class="fa fa-check"></i><b>2</b> Case studies on Big Data. What makes Big Data valuable?</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#assignment-1-pick-a-case-study"><i class="fa fa-check"></i><b>2.1</b> ASSIGNMENT #1: PICK A CASE STUDY</a></li>
+<li class="chapter" data-level="2.2" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#an-example-netflix."><i class="fa fa-check"></i><b>2.2</b> An example: Netflix.</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#background"><i class="fa fa-check"></i><b>2.2.1</b> Background</a></li>
+<li class="chapter" data-level="2.2.2" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-problem-is-big-data-helping-to-solve"><i class="fa fa-check"></i><b>2.2.2</b> What problem is Big Data helping to solve?</a></li>
+<li class="chapter" data-level="2.2.3" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#how-is-netflix-using-big-data-in-practice"><i class="fa fa-check"></i><b>2.2.3</b> How is Netflix using Big Data in practice?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-were-the-results-of-implementing-big-data-analysis"><i class="fa fa-check"></i><b>2.2.4</b> What were the results of implementing Big Data analysis?</a></li>
+<li class="chapter" data-level="2.2.5" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-data-was-used"><i class="fa fa-check"></i><b>2.2.5</b> What data was used?</a></li>
+<li class="chapter" data-level="2.2.6" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-are-the-technical-details"><i class="fa fa-check"></i><b>2.2.6</b> What are the technical details?</a></li>
+<li class="chapter" data-level="2.2.7" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-are-the-challenges-they-had-to-overcome"><i class="fa fa-check"></i><b>2.2.7</b> What are the challenges they had to overcome?</a></li>
+<li class="chapter" data-level="2.2.8" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#key-takeaways-and-insights"><i class="fa fa-check"></i><b>2.2.8</b> Key takeaways and insights?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#other-case-studies."><i class="fa fa-check"></i><b>2.3</b> Other case studies.</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html"><i class="fa fa-check"></i><b>3</b> The Big Data Workflow</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#acquiring-data"><i class="fa fa-check"></i><b>3.1</b> Acquiring data</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#an-example-of-data-acquisition-the-wifire-project"><i class="fa fa-check"></i>An example of data acquisition: the WIFIRE project</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#preparing-data"><i class="fa fa-check"></i><b>3.2</b> Preparing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#exploring-data"><i class="fa fa-check"></i>Exploring data</a></li>
+<li class="chapter" data-level="" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#pre-processing-data"><i class="fa fa-check"></i>Pre-processing data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#analyzing-data"><i class="fa fa-check"></i><b>3.3</b> Analyzing data</a></li>
+<li class="chapter" data-level="3.4" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#communicating-results"><i class="fa fa-check"></i><b>3.4</b> Communicating results</a></li>
+<li class="chapter" data-level="3.5" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#turning-insights-into-action"><i class="fa fa-check"></i><b>3.5</b> Turning insights into action</a></li>
+<li class="chapter" data-level="3.6" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#what-next"><i class="fa fa-check"></i><b>3.6</b> What next?</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html"><i class="fa fa-check"></i><b>4</b> Hadoop and Spark</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#what-is-hadoop"><i class="fa fa-check"></i><b>4.1</b> What is Hadoop?</a>
+<ul>
+<li class="chapter" data-level="" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#hadoop-features"><i class="fa fa-check"></i>Hadoop features</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#what-is-spark"><i class="fa fa-check"></i><b>4.2</b> What is Spark?</a>
+<ul>
+<li class="chapter" data-level="" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#spark-features"><i class="fa fa-check"></i>Spark features</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#what-are-the-key-differences-between-hadoop-and-spark"><i class="fa fa-check"></i><b>4.3</b> What are the key differences between Hadoop and Spark?</a></li>
+<li class="chapter" data-level="4.4" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#advantages-and-disadvantages"><i class="fa fa-check"></i><b>4.4</b> Advantages and disadvantages</a></li>
+<li class="chapter" data-level="4.5" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#intro-to-spark-with-sparklyr-in-r"><i class="fa fa-check"></i><b>4.5</b> Intro to spark with sparklyr in R</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><i class="fa fa-check"></i><b>5</b> Machine Learning for Social Scientists. Intro to the ML Framework.</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#prediction-vs-inference"><i class="fa fa-check"></i><b>5.1</b> Prediction vs inference</a></li>
+<li class="chapter" data-level="5.2" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#split-your-data-into-trainingtesting"><i class="fa fa-check"></i><b>5.2</b> Split your data into training/testing</a></li>
+<li class="chapter" data-level="5.3" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#cross-validation"><i class="fa fa-check"></i><b>5.3</b> Cross-validation</a></li>
+<li class="chapter" data-level="5.4" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#bias-variance-tradeoff"><i class="fa fa-check"></i><b>5.4</b> Bias-variance tradeoff</a></li>
+<li class="chapter" data-level="5.5" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#an-example"><i class="fa fa-check"></i><b>5.5</b> An example</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Empirical Applications with Big Data Tools</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hadoop-and-spark" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Hadoop and Spark<a href="hadoop-and-spark.html#hadoop-and-spark" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><a href="https://spark.apache.org/">Apache Spark</a> and <a href="https://hadoop.apache.org/">Apache Hadoop</a> are both popular, open-source data science tools offered by the Apache Software Foundation. Apache Spark is designed as an interface for large-scale processing, while Apache Hadoop provides a broader software framework for the distributed storage and processing of big data. Both can be used either together or as standalone services.</p>
+<div id="what-is-hadoop" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> What is Hadoop?<a href="hadoop-and-spark.html#what-is-hadoop" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Apache Hadoop is a set of open-source modules and utilities designed to simplify the process of storing, managing, and analyzing large amounts of data. It was created in 2006 by software engineers Doug Cutting and Mike Cafarella to process large amounts of data, initially using its namesake file system and MapReduce, a programming model and processing engine promoted by Google in a 2004 technical paper. <strong>Hadoop provides a way to efficiently break up large data processing problems across different computers, run computations locally and then combine the results.</strong> The distributed processing architecture of the framework makes it simple to create big data applications for clusters of hundreds or thousands of commodity servers, known as nodes.</p>
+<p>Hadoop is made up of three main components:</p>
+<ol style="list-style-type: decimal">
+<li><strong>HDFS (Hadoop Distributed File System)</strong>: HDFS serves as Hadoop’s storage layer. On HDFS, data is always stored in the form of data-blocks, with the default size of each data-block being 128 MB, which is configurable. Hadoop employs a master-slave architecture based on the MapReduce algorithm. NameNode and DataNode in HDFS follow a similar pattern.</li>
+<li><strong>MapReduce</strong>: MapReduce is a Hadoop processing layer. Map-Reduce is a programming model that has two phases: Map Phase and Reduce Phase. It is intended for parallel processing of data distributed across multiple machines (nodes). Its role was reduced by YARN in the Hadoop implementation of MapReduce in 2013.</li>
+<li><strong>YARN (yet another Resources Negotiator)</strong>: In Hadoop, YARN is the job scheduling and resource management layer. Data stored on HDFS is processed and run using data processing engines such as graph processing, interactive processing, batch processing, and so on. With the help of this YARN framework, the overall performance of Hadoop is improved.</li>
+</ol>
+<div id="hadoop-features" class="section level3 unnumbered hasAnchor">
+<h3>Hadoop features<a href="hadoop-and-spark.html#hadoop-features" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Features
+1. <strong>Open Source</strong>. Hadoop is an open source software framework. This means that it is freely available and that we can modify its source code to meet our needs.
+2. <strong>Distributed processing</strong> HDFS distributes data across the clusters, therefore data is processed in parallel by MapReduce on a cluster of nodes.
+3. <strong>Fault Tolerance</strong>. Hadoop is a fault-tolerant system. By default, each block creates three replicas across the cluster, but this can be changed as needed. So, if one of the nodes fails, we can recover data from the other node. Failures of nodes or tasks are automatically recovered by the framework.
+4. <strong>Reliability</strong>. It reliably stores data on the cluster despite machine failure.
+5. <strong>High Availability</strong>. Despite hardware failure, data is highly available and accessible. When a machine or piece of hardware fails in Hadoop, we can still access data from another path.
+6. <strong>Scalability</strong>. Hadoop is highly scalable because new hardware can be added to nodes.
+7. <strong>Economical</strong>. Hadoop runs on a cluster of inexpensive commodity hardware. We don’t need any specialized equipment for it.
+8. <strong>Simple to use</strong>. There is no need for the client to deal with distributed computing because the framework handles everything.</p>
+</div>
+</div>
+<div id="what-is-spark" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> What is Spark?<a href="hadoop-and-spark.html#what-is-spark" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Apache Spark is a free and open-source data processing engine designed for large-scale data analysis. Apache Spark, a powerful unified analytics engine, is frequently used by data scientists to support ML algorithms and complex data analytics. Apache Spark can be used as a standalone application or as a software package on top of Apache Hadoop.</p>
+<p>Spark was created by Matei Zaharia in 2009 while he was a graduate student at the University of California, Berkeley. His main contribution to the technology was to improve how data is organized in order to more efficiently scale in-memory processing across distributed cluster nodes. Spark, like Hadoop, can process massive amounts of data by distributing workloads across multiple nodes, but it typically does so much faster. This <strong>allows it to handle use cases that Hadoop cannot handle with MapReduce, transforming Spark into a more general-purpose processing engine</strong>.</p>
+<div id="spark-features" class="section level3 unnumbered hasAnchor">
+<h3>Spark features<a href="hadoop-and-spark.html#spark-features" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Open source</strong>.</li>
+<li><strong>Fault Tolerance</strong>. Apache Spark is built to deal with worker node failures. It achieves fault tolerance by utilizing DAG and RDD (Resilient Distributed Datasets). A DAG stores the history of all the transformations and actions required to complete a task. In the event of a worker node failure, rerunning the steps from the existing DAG yields the same results.</li>
+<li><strong>Dynamic nature</strong>. It has over 80 high-level operators that make it simple to build parallel apps.</li>
+<li><strong>Lazy evaluation</strong>. Spark does not evaluate transformations immediately because they are lazy. All transformations are evaluated slowly. The transformations are added to the DAG, and the final computation or results are only available when actions are executed. This makes it extremely fast and lightweight.</li>
+<li><strong>Speed</strong>. Spark allows Hadoop applications to run up to 100x faster in memory and up to 10x faster on disk. Spark accomplishes this by reducing the number of disk read/write operations for intermediate results. It only stores data in memory and performs disk operations when necessary. Spark accomplishes this through the use of a DAG, a query optimizer, and a highly optimized physical execution engine.</li>
+<li><strong>Reusability</strong>. Spark code can be used for batch processing, joining streaming data with historical data, and running ad-hoc queries on the state of a streaming stream.</li>
+<li><strong>Advanced analytics</strong>. Spark has quickly become the de facto standard for big data processing and data science across multiple industries. Spark includes machine learning and graph processing libraries, which are used by businesses across industries to solve complex problems.</li>
+<li><strong>In Memory Computing</strong>. Unlike Hadoop MapReduce, Spark can process tasks in memory and does not require intermediate results to be written back to disk. This feature significantly accelerates Spark processing. In addition, Spark is capable of caching intermediate results so that they can be reused in the next iteration. This gives Spark an additional performance boost for iterative and repetitive processes where results from one step can be used later or there is a shared dataset that can be used across multiple tasks.</li>
+<li><strong>Supporting Multiple languages</strong>: Spark includes multi-language support. The majority of the APIs are available in Java, Scala, Python, and R. There are also advanced data analytics features available with the R language. Spark also includes SparkSQL, which is a SQL-like feature. SQL developers find it very easy to use, and the learning curve is greatly reduced.</li>
+<li><strong>Integrated with HADOOP</strong>. Apache Spark integrates extremely well with the Hadoop file system HDFS. It supports a variety of file formats, including parquet, json, csv, ORC, and Avro. Hadoop can be easily integrated with Spark as an input or destination data source.</li>
+<li><strong>Cost-effective</strong>. Because Apache Spark is open source software, there is no licensing fee associated with it. Users only need to be concerned about the hardware cost. Additionally, Apache Spark reduces other costs because it includes built-in support for stream processing, machine learning, and graph processing. Spark does not have any vendor lock-in, making it very easy for organizations to pick and choose Spark features based on their use case.</li>
+</ol>
+</div>
+</div>
+<div id="what-are-the-key-differences-between-hadoop-and-spark" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> What are the key differences between Hadoop and Spark?<a href="hadoop-and-spark.html#what-are-the-key-differences-between-hadoop-and-spark" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>Apache Hadoop and Apache Spark, as well as other data science tools, may be used pretty much interchangeably.</p>
+</blockquote>
+<p>The use of MapReduce by Hadoop is the most notable difference between the two frameworks. In the early versions of Hadoop, HDFS was linked to it, whereas Spark was created specifically to replace MapReduce. Even though Hadoop no longer relies solely on MapReduce for data processing, there is still a strong link between the two.</p>
+<p>When it comes to keeping costs down for large processing jobs that can tolerate some delays, MapReduce in Hadoop has advantages. Because it is designed to process data mostly in memory, Spark has a clear advantage over MapReduce in delivering timely analytics insights.</p>
+<p>Hadoop was the first to arrive, and it changed the way people thought about scaling data workloads. It enabled organizations to implement big data environments with large volumes and diverse types of data, particularly for aggregating and storing data sets to support analytics applications. As a result, it’s frequently used as a platform for data lakes, which commonly store both raw data and prepared data sets for analytics.</p>
+<p>While Hadoop can now be used for more than just batch processing, it is best suited for historical data analysis. Spark was built from the ground up to handle high-throughput data processing tasks. As a result, it is suitable for a variety of applications. Spark is used in online applications, interactive data analysis, extract, transform, and load (ETL), and other batch processes. It can be used to analyze data on its own or as part of a data processing pipeline.</p>
+<p>Spark can also be used on top of a Hadoop cluster as a staging tier for ETL and exploratory data analysis. This highlights another significant distinction between the two frameworks: Because Spark lacks a built-in file system like HDFS, it must be used in conjunction with Hadoop or other platforms for long-term data storage and management.</p>
+</div>
+<div id="advantages-and-disadvantages" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Advantages and disadvantages<a href="hadoop-and-spark.html#advantages-and-disadvantages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Choose Spark if you are a data scientist who primarily works with machine learning algorithms and large-scale data processing. Spark:</strong>
+* Runs as a stand-alone utility independent of Apache Hadoop.
+* Distributed task dispatching, I/O functions, and scheduling are all available.
+* Multiple languages are supported, including Java, Python, and Scala.
+* Provides implicit data parallelism as well as fault tolerance.</p>
+<p><strong>Choose Hadoop if you are a data scientist who needs a wide range of data science utilities for big data storage and processing. Hadoop:</strong>
+* Provides a comprehensive framework for big data storage and processing.
+* Provides a huge selection of packages, including Spark itself.
+* Is based on a distributed, scalable, and portable file system.
+* Utilizes additional data warehousing, machine learning, and parallel processing applications.</p>
+</div>
+<div id="intro-to-spark-with-sparklyr-in-r" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Intro to spark with sparklyr in R<a href="hadoop-and-spark.html#intro-to-spark-with-sparklyr-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You’ll now start practicing with the sparklyr package in R through DataCamp: <a href="https://app.datacamp.com/learn/courses/introduction-to-spark-with-sparklyr-in-r">Introduction to spark with sparklyr in R</a>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="the-big-data-workflow.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-hadoop-vs-spark.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

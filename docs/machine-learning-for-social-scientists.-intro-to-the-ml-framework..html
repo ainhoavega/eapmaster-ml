@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Machine Learning for Social Scientists. Intro to the ML Framework. | Empirical Applications with Big Data Tools</title>
+  <meta name="description" content="These are the 2022/23 slides for the course ‘’Empirical Applications with Big Data Tools’’ part of the Master in Economics: Empirical Applications and Policies." />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Machine Learning for Social Scientists. Intro to the ML Framework. | Empirical Applications with Big Data Tools" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="These are the 2022/23 slides for the course ‘’Empirical Applications with Big Data Tools’’ part of the Master in Economics: Empirical Applications and Policies." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Machine Learning for Social Scientists. Intro to the ML Framework. | Empirical Applications with Big Data Tools" />
+  
+  <meta name="twitter:description" content="These are the 2022/23 slides for the course ‘’Empirical Applications with Big Data Tools’’ part of the Master in Economics: Empirical Applications and Policies." />
+  
+
+<meta name="author" content="Ainhoa Vega Bayo" />
+
+
+<meta name="date" content="2023-01-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hadoop-and-spark.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="what-is-big-data.html"><a href="what-is-big-data.html"><i class="fa fa-check"></i><b>1</b> What is Big Data?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="what-is-big-data.html"><a href="what-is-big-data.html#the-three-vs-of-big-data"><i class="fa fa-check"></i><b>1.1</b> The three V’s of Big Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#volume"><i class="fa fa-check"></i>Volume</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#velocity"><i class="fa fa-check"></i>Velocity</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#variety"><i class="fa fa-check"></i>Variety</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="what-is-big-data.html"><a href="what-is-big-data.html#other-vs-of-big-data"><i class="fa fa-check"></i><b>1.2</b> Other V’s of Big Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#veracity"><i class="fa fa-check"></i>Veracity</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#value"><i class="fa fa-check"></i>Value</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#and-even-more-vs-of-big-data"><i class="fa fa-check"></i>… and even more V’s of Big Data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="what-is-big-data.html"><a href="what-is-big-data.html#some-statistics-of-big-data"><i class="fa fa-check"></i><b>1.3</b> Some statistics of Big Data</a></li>
+<li class="chapter" data-level="1.4" data-path="what-is-big-data.html"><a href="what-is-big-data.html#types-of-big-data"><i class="fa fa-check"></i><b>1.4</b> Types of Big Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#unstructured-data"><i class="fa fa-check"></i>Unstructured data</a></li>
+<li class="chapter" data-level="" data-path="what-is-big-data.html"><a href="what-is-big-data.html#semi-structured-data"><i class="fa fa-check"></i>Semi-structured data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="what-is-big-data.html"><a href="what-is-big-data.html#how-is-big-data-being-used"><i class="fa fa-check"></i><b>1.5</b> How is Big Data being used?</a></li>
+<li class="chapter" data-level="1.6" data-path="what-is-big-data.html"><a href="what-is-big-data.html#concerns"><i class="fa fa-check"></i><b>1.6</b> Concerns</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html"><i class="fa fa-check"></i><b>2</b> Case studies on Big Data. What makes Big Data valuable?</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#assignment-1-pick-a-case-study"><i class="fa fa-check"></i><b>2.1</b> ASSIGNMENT #1: PICK A CASE STUDY</a></li>
+<li class="chapter" data-level="2.2" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#an-example-netflix."><i class="fa fa-check"></i><b>2.2</b> An example: Netflix.</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#background"><i class="fa fa-check"></i><b>2.2.1</b> Background</a></li>
+<li class="chapter" data-level="2.2.2" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-problem-is-big-data-helping-to-solve"><i class="fa fa-check"></i><b>2.2.2</b> What problem is Big Data helping to solve?</a></li>
+<li class="chapter" data-level="2.2.3" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#how-is-netflix-using-big-data-in-practice"><i class="fa fa-check"></i><b>2.2.3</b> How is Netflix using Big Data in practice?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-were-the-results-of-implementing-big-data-analysis"><i class="fa fa-check"></i><b>2.2.4</b> What were the results of implementing Big Data analysis?</a></li>
+<li class="chapter" data-level="2.2.5" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-data-was-used"><i class="fa fa-check"></i><b>2.2.5</b> What data was used?</a></li>
+<li class="chapter" data-level="2.2.6" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-are-the-technical-details"><i class="fa fa-check"></i><b>2.2.6</b> What are the technical details?</a></li>
+<li class="chapter" data-level="2.2.7" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#what-are-the-challenges-they-had-to-overcome"><i class="fa fa-check"></i><b>2.2.7</b> What are the challenges they had to overcome?</a></li>
+<li class="chapter" data-level="2.2.8" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#key-takeaways-and-insights"><i class="fa fa-check"></i><b>2.2.8</b> Key takeaways and insights?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="case-studies-on-big-data.-what-makes-big-data-valuable.html"><a href="case-studies-on-big-data.-what-makes-big-data-valuable.html#other-case-studies."><i class="fa fa-check"></i><b>2.3</b> Other case studies.</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html"><i class="fa fa-check"></i><b>3</b> The Big Data Workflow</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#acquiring-data"><i class="fa fa-check"></i><b>3.1</b> Acquiring data</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#an-example-of-data-acquisition-the-wifire-project"><i class="fa fa-check"></i>An example of data acquisition: the WIFIRE project</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#preparing-data"><i class="fa fa-check"></i><b>3.2</b> Preparing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#exploring-data"><i class="fa fa-check"></i>Exploring data</a></li>
+<li class="chapter" data-level="" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#pre-processing-data"><i class="fa fa-check"></i>Pre-processing data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#analyzing-data"><i class="fa fa-check"></i><b>3.3</b> Analyzing data</a></li>
+<li class="chapter" data-level="3.4" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#communicating-results"><i class="fa fa-check"></i><b>3.4</b> Communicating results</a></li>
+<li class="chapter" data-level="3.5" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#turning-insights-into-action"><i class="fa fa-check"></i><b>3.5</b> Turning insights into action</a></li>
+<li class="chapter" data-level="3.6" data-path="the-big-data-workflow.html"><a href="the-big-data-workflow.html#what-next"><i class="fa fa-check"></i><b>3.6</b> What next?</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html"><i class="fa fa-check"></i><b>4</b> Hadoop and Spark</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#what-is-hadoop"><i class="fa fa-check"></i><b>4.1</b> What is Hadoop?</a>
+<ul>
+<li class="chapter" data-level="" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#hadoop-features"><i class="fa fa-check"></i>Hadoop features</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#what-is-spark"><i class="fa fa-check"></i><b>4.2</b> What is Spark?</a>
+<ul>
+<li class="chapter" data-level="" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#spark-features"><i class="fa fa-check"></i>Spark features</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#what-are-the-key-differences-between-hadoop-and-spark"><i class="fa fa-check"></i><b>4.3</b> What are the key differences between Hadoop and Spark?</a></li>
+<li class="chapter" data-level="4.4" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#advantages-and-disadvantages"><i class="fa fa-check"></i><b>4.4</b> Advantages and disadvantages</a></li>
+<li class="chapter" data-level="4.5" data-path="hadoop-and-spark.html"><a href="hadoop-and-spark.html#intro-to-spark-with-sparklyr-in-r"><i class="fa fa-check"></i><b>4.5</b> Intro to spark with sparklyr in R</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><i class="fa fa-check"></i><b>5</b> Machine Learning for Social Scientists. Intro to the ML Framework.</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#prediction-vs-inference"><i class="fa fa-check"></i><b>5.1</b> Prediction vs inference</a></li>
+<li class="chapter" data-level="5.2" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#split-your-data-into-trainingtesting"><i class="fa fa-check"></i><b>5.2</b> Split your data into training/testing</a></li>
+<li class="chapter" data-level="5.3" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#cross-validation"><i class="fa fa-check"></i><b>5.3</b> Cross-validation</a></li>
+<li class="chapter" data-level="5.4" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#bias-variance-tradeoff"><i class="fa fa-check"></i><b>5.4</b> Bias-variance tradeoff</a></li>
+<li class="chapter" data-level="5.5" data-path="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html"><a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#an-example"><i class="fa fa-check"></i><b>5.5</b> An example</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Empirical Applications with Big Data Tools</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="machine-learning-for-social-scientists.-intro-to-the-ml-framework." class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Machine Learning for Social Scientists. Intro to the ML Framework.<a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#machine-learning-for-social-scientists.-intro-to-the-ml-framework." class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="prediction-vs-inference" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Prediction vs inference<a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#prediction-vs-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="split-your-data-into-trainingtesting" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Split your data into training/testing<a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#split-your-data-into-trainingtesting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="cross-validation" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Cross-validation<a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#cross-validation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="bias-variance-tradeoff" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Bias-variance tradeoff<a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#bias-variance-tradeoff" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="an-example" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> An example<a href="machine-learning-for-social-scientists.-intro-to-the-ml-framework..html#an-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hadoop-and-spark.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-machine-learning-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
